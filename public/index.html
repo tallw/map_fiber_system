@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Mapeamento de Fibra Óptica</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Sistema de Mapeamento de Fibra Óptica</h1>
+            <div class="auth-buttons">
+                <button id="loginBtn">Login</button>
+                <button id="registerBtn">Registrar</button>
+                <button id="logoutBtn" style="display: none;">Sair</button>
+            </div>
+        </header>
+        
+        <main>
+            <div id="map"></div>
+            
+            <div class="controls">
+                <div class="box-controls">
+                    <h2>Controle de Caixas</h2>
+                    <button id="addBoxBtn" disabled>Adicionar Caixa</button>
+                    <button id="removeBoxBtn" disabled>Remover Caixa</button>
+                </div>
+                
+                <div class="box-info" id="boxInfo">
+                    <h2>Informações da Caixa</h2>
+                    <p>Selecione uma caixa no mapa para ver detalhes</p>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Modal de Login -->
+        <div id="loginModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Login</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email:</label>
+                        <input type="email" id="loginEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Senha:</label>
+                        <input type="password" id="loginPassword" required>
+                    </div>
+                    <button type="submit">Entrar</button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Modal de Registro -->
+        <div id="registerModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Registrar</h2>
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="registerName">Nome:</label>
+                        <input type="text" id="registerName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email:</label>
+                        <input type="email" id="registerEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Senha:</label>
+                        <input type="password" id="registerPassword" required>
+                    </div>
+                    <button type="submit">Registrar</button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Modal de Adicionar Caixa -->
+        <div id="addBoxModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Adicionar Caixa</h2>
+                <form id="addBoxForm">
+                    <div class="form-group">
+                        <label for="boxName">Nome da Caixa:</label>
+                        <input type="text" id="boxName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="boxType">Tipo:</label>
+                        <select id="boxType">
+                            <option value="distribuicao">Caixa de Distribuição</option>
+                            <option value="emenda">Caixa de Emenda</option>
+                            <option value="terminal">Caixa Terminal</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="boxStatus">Status:</label>
+                        <select id="boxStatus">
+                            <option value="ativo">Ativo</option>
+                            <option value="inativo">Inativo</option>
+                            <option value="manutenção">Manutenção</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="boxDescription">Descrição:</label>
+                        <textarea id="boxDescription"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="boxIcon">Ícone:</label>
+                        <select id="boxIcon">
+                            <option value="icon-blue">Azul</option>
+                            <option value="icon-red">Vermelho</option>
+                            <option value="icon-green">Verde</option>
+                            <option value="icon-yellow">Amarelo</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <p>Clique no mapa para selecionar a localização</p>
+                        <input type="hidden" id="boxLatitude">
+                        <input type="hidden" id="boxLongitude">
+                        <div id="selectedLocation">Nenhuma localização selecionada</div>
+                    </div>
+                    <button type="submit">Salvar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="/js/map.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/boxes.js"></script>
+</body>
+</html>
